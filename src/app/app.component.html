@@ -1,8 +1,71 @@
 <div class="app-container">
-  <input type="text" [(ngModel)]="search_text" placeholder="Enter keyword here....">
-  <form [formGroup]="form">
-    <input type="radio" value='Book' formControlName="search" >Book
-    <input type="radio" value='Notes' formControlName="search">Notes
-  </form>
-  <button (click)="onClickSubmit()">Search</button>
+  <div class="header-txt">
+    CSCI 5410: Assignment 3
+  </div>
+
+  <div class="blocks">
+    <div class="search-block">
+      <div>
+        <form [formGroup]="form">
+          <div class="b1">
+            <input type="text" formControlName="search_text" placeholder="Enter keyword here....">
+          </div>
+          <div class="b2">
+            <input type="radio" value='Book' formControlName="search">Book
+            <input type="radio" value='Notes' formControlName="search">Notes
+          </div>
+        </form>
+      </div>
+
+      <button class="b3" (click)="onClickSubmit()">Search</button>
+      <div class="b4 error" *ngIf="errorMessageSearch">
+        Enter text and select Book/Notes option
+      </div>
+    </div>
+    <div class="notes-block">
+      <form [formGroup]="notesForm">
+        <div class="b1">
+          <textarea type="text" formControlName="notes" placeholder="Enter notes here"></textarea>
+        </div>
+        <div class="b2">
+          <button class="b3" (click)="onClickSaveNote()">Save Note</button>
+        </div>
+        <div class="b4 error" *ngIf="errorMessageNote">
+          Enter text and select Book/Notes option
+        </div>
+        <div class="b4 success" *ngIf="noteSuccess">
+          Note saved successfully!!
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="search-results">
+    <table class="table-bordered table-hover table-striped" *ngIf="searchResults.length > 0">
+      <thead>
+        <th>S.No</th>
+        <th>Book Name</th>
+        <th>Book Author</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of searchResults; let idx = index">
+          <td>{{idx+1}}</td>
+          <td>{{r.book_name}}</td>
+          <td>{{r.author_name}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <table class="table-bordered table-hover table-striped" *ngIf="searchResultsNotes.length > 0">
+      <thead>
+        <th>S.No</th>
+        <th>Notes Text</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let r of searchResultsNotes; let idx = index">
+          <td>{{idx+1}}</td>
+          <td>{{r.notes_text}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
