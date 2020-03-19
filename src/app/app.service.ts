@@ -8,7 +8,9 @@ const httpOptions = {
     "Content-Type": "application/json"
   })
 };
-const base_url = "http://54.85.124.206";
+const base_url = "http://localhost";
+// const base_url = "http://54.85.124.206";
+
 @Injectable()
 export class AppService {
   private extractData(res: Response) {
@@ -26,7 +28,7 @@ export class AppService {
       .post<any>(url, JSON.stringify(payload), httpOptions)
       .pipe(
         map(this.extractData),
-        catchError(this.handleError<any>("getSubjectsForSession"))
+        catchError(this.handleError<any>("getDataForKeyword"))
       );
   }
 
@@ -36,7 +38,7 @@ export class AppService {
       .post<any>(url, JSON.stringify(payload), httpOptions)
       .pipe(
         map(this.extractData),
-        catchError(this.handleError<any>("getSubjectsForSession"))
+        catchError(this.handleError<any>("saveNoteForKeyword"))
       );
   }
   

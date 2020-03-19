@@ -10,6 +10,7 @@ import { AppService } from "./app.service";
 export class AppComponent {
   title = "web-app";
   form: FormGroup;
+  location;
   notesForm: FormGroup;
   searchResults = [];
   searchResultsNotes = [];

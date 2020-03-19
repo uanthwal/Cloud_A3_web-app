@@ -5,7 +5,7 @@
 
   <div class="blocks">
     <div class="search-block">
-      <div>
+      <div class="padd">
         <form [formGroup]="form">
           <div class="b1">
             <input type="text" formControlName="search_text" placeholder="Enter keyword here....">
@@ -16,14 +16,16 @@
           </div>
         </form>
       </div>
-
-      <button class="b3" (click)="onClickSubmit()">Search</button>
+      <div class="padd">
+        <button class="b3" (click)="onClickSubmit()">Search</button>
+      </div>
+      
       <div class="b4 error" *ngIf="errorMessageSearch">
         Enter text and select Book/Notes option
       </div>
     </div>
     <div class="notes-block">
-      <form [formGroup]="notesForm">
+      <form class="padd" [formGroup]="notesForm">
         <div class="b1">
           <textarea type="text" formControlName="notes" placeholder="Enter notes here"></textarea>
         </div>
@@ -67,5 +69,4 @@
       </tbody>
     </table>
   </div>
-
 </div>
